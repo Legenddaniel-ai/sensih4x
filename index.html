@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FF SENSLAB — Free Fire Sensitivity HUD</title>
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
+  <link
+    href="[https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap)"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="FF SENSLAB Home">
+        <!-- Custom Free Fire Tactical Flame + Crosshair Emblem -->
+        <span class="brand-logo" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+            <polygon points="18,2 32,10 32,26 18,34 4,26 4,10" class="logo-hex" />
+            <path
+              d="M19.5 8.5C19.5 8.5 24.5 13 24.5 18.2C24.5 22.1 21.6 25.2 18 25.2C14.4 25.2 11.5 22.1 11.5 18.2C11.5 15.8 12.8 13.7 14.3 12.4C14.1 14.3 15.1 15.6 16.2 15.9C15.6 13.2 17.2 10.2 19.5 8.5Z"
+              class="logo-flame"
+            />
+            <polygon points="17.2,17 19.2,17 18.4,24.5 16.6,24.5" class="logo-knife" />
+          </svg>
+        </span>
+        <span class="brand-text hollow-text" data-text="FF SENSLAB">FF SENSLAB</span>
+      </a>
+      <p class="header-note">0–200 Scale • Starting points only, not official</p>
+    </div>
+  </header>
+
+  <main id="top" class="container main-content">
+    <section class="hero hud-panel" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="eyebrow">// TACTICAL AIM CALIBRATION • OB UPDATE 200-CAP</p>
+        <h1 id="hero-heading">
+          <span class="hollow-text hero-hollow">FREE FIRE</span>
+          SENSITIVITY LAB
+        </h1>
+        <p class="hero-sub">
+          Tune your 0–200 camera, drag-headshot, and scope multipliers around your DPI, shoot button
+          size, and playstyle.
+        </p>
+      </div>
+
+      <div class="hero-crosshair" aria-label="General sensitivity readout">
+        <svg class="crosshair-svg" viewBox="0 0 200 200" role="img" aria-hidden="true">
+          <circle cx="100" cy="100" r="82" class="ring-outer" />
+          <circle cx="100" cy="100" r="62" class="ring-mid" />
+          <circle cx="100" cy="100" r="44" class="ring-inner" />
+          <line x1="100" y1="6" x2="100" y2="34" class="tick" />
+          <line x1="100" y1="166" x2="100" y2="194" class="tick" />
+          <line x1="6" y1="100" x2="34" y2="100" class="tick" />
+          <line x1="166" y1="100" x2="194" y2="100" class="tick" />
+          <polygon points="100,14 105,24 95,24" class="reticle-arrow" />
+        </svg>
+        <div class="crosshair-readout">
+          <span class="readout-label">GENERAL</span>
+          <span id="hero-general-value" class="readout-value">162</span>
+          <span class="readout-cap">/ 200</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card hud-panel controls-card" aria-labelledby="core-inputs-heading">
+      <div class="card-top">
+        <h2 id="core-inputs-heading" class="section-title">01 // Core Loadout</h2>
+        <span class="badge">MAX 200</span>
+      </div>
+
+      <div class="form-grid core-grid">
+        <div class="field">
+          <label for="play-style">Play Style</label>
+          <select id="play-style" name="playStyle">
+            <option value="rusher">Rusher (One-Tap / SMG)</option>
+            <option value="balanced" selected>Balanced (All-Rounder)</option>
+            <option value="sniper">Sniper (AWM / Marksman)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="grip">Grip</label>
+          <select id="grip" name="grip">
+            <option value="2_thumbs" selected>2 Thumbs</option>
+            <option value="3+_fingers">3+ Fingers (Claw)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="shoot-button">Shoot Button Size (%)</label>
+          <input
+            id="shoot-button"
+            type="number"
+            min="10"
+            max="100"
+            step="1"
+            value="48"
+            placeholder="e.g., 48"
+          />
+        </div>
+
+        <div class="field">
+          <label for="dpi">Device DPI</label>
+          <input
+            id="dpi"
+            type="number"
+            min="240"
+            max="1440"
+            step="1"
+            value="411"
+            placeholder="e.g., 411 or 600"
+          />
+        </div>
+      </div>
+
+      <div class="slider-block">
+        <div class="slider-header">
+          <label for="offset-slider">Faster / Slower Fine-Tune</label>
+          <span id="offset-value" class="offset-pill">0</span>
+        </div>
+        <input
+          id="offset-slider"
+          type="range"
+          min="-10"
+          max="10"
+          step="1"
+          value="0"
+          aria-describedby="offset-hint"
+        />
+        <div id="offset-hint" class="slider-labels">
+          <span>-10 Slower</span>
+          <span>0 Baseline</span>
+          <span>+10 Faster</span>
+        </div>
+      </div>
+
+      <details class="ai-details" open>
+        <summary class="ai-summary">02 // Device &amp; AI Coach Specs</summary>
+        <div class="form-grid ai-grid">
+          <div class="field search-field">
+            <label for="device-model">Exact Device Model</label>
+            <input
+              id="device-model"
+              type="text"
+              placeholder="Search device (e.g., Redmi Note 12, iPhone 15)"
+              autocomplete="off"
+              aria-autocomplete="list"
+              aria-controls="device-suggestions"
+            />
+            <ul id="device-suggestions" class="suggestions-list" role="listbox" hidden></ul>
+          </div>
+
+          <div class="field">
+            <label for="screen-size">Screen Size</label>
+            <input id="screen-size" type="text" placeholder="e.g., 6.67 in" />
+          </div>
+
+          <div class="field">
+            <label for="ram">RAM</label>
+            <input id="ram" type="text" placeholder="e.g., 8 GB" />
+          </div>
+
+          <div class="field">
+            <label for="fps">FPS Target</label>
+            <input id="fps" type="text" placeholder="e.g., 60 / 90 / 120 FPS" />
+          </div>
+
+          <div class="field">
+            <label for="problem">Main Aim Issue</label>
+            <select id="problem" name="problem">
+              <option value="overshooting">Overshooting (Above Head)</option>
+              <option value="too_slow">Too Slow (Stuck on Chest)</option>
+              <option value="shaky_at_range">Shaky at Range</option>
+              <option value="bad_headshots" selected>Bad Headshots</option>
+            </select>
+          </div>
+        </div>
+      </details>
+
+      <div class="actions-row">
+        <button id="copy-btn" type="button" class="btn btn-secondary">Copy settings</button>
+        <button id="ai-btn" type="button" class="btn btn-primary">Calculate with AI</button>
+      </div>
+
+      <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="results-grid" aria-labelledby="results-heading">
+      <div class="card hud-panel results-card">
+        <div class="card-top">
+          <h2 id="results-heading" class="section-title">Formula Sensitivity</h2>
+          <span class="badge">0–200</span>
+        </div>
+        <div id="formula-bars" class="bars-list"></div>
+      </div>
+
+      <div id="ai-card" class="card hud-panel results-card ai-results-card">
+        <div class="card-top">
+          <h2 class="section-title">AI Coach Sensitivity</h2>
+          <span class="badge badge-amber">CLAUDE AI</span>
+        </div>
+        <p id="ai-placeholder" class="muted-copy">
+          Click <strong>Calculate with AI</strong> to generate a tailored 0–200 profile alongside
+          your formula values.
+        </p>
+        <div id="ai-bars" class="bars-list" hidden></div>
+        <p id="ai-tip" class="ai-tip" hidden></p>
+      </div>
+    </section>
+
+    <section class="card hud-panel tips-card" aria-labelledby="tips-heading">
+      <h2 id="tips-heading" class="section-title">03 // Training Ground Protocol</h2>
+      <ul class="tips-list">
+        <li>
+          <strong>Match shoot button to drag speed:</strong> Smaller buttons (38%–46%) give extra
+          vertical drag room on 200-scale settings; larger buttons (52%–60%) prevent missed taps.
+        </li>
+        <li>
+          <strong>High DPI needs controlled General:</strong> If you raise Android developer DPI
+          above 550, drop General by 6–12 points so red-dot flicks stay locked on head level.
+        </li>
+        <li>
+          <strong>Adjust in 3–5 point steps:</strong> On a 0–200 scale, small 4-point tweaks dial in
+          consistent J-drag and straight-drag headshots without ruining muscle memory.
+        </li>
+      </ul>
+      <p class="disclaimer">
+        Note: All numbers generated here are starting points for Training Ground testing, not
+        official Free Fire settings.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
